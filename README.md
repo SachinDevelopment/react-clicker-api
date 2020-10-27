@@ -11,9 +11,9 @@ remember this password on set up
 https://www.heidisql.com/download.php?download=installer
 
 ## add to path
-`C:\Program Files\PostgreSQL\13\lib`
-`C:\Program Files\PostgreSQL\13\bin`
-run `psql -U postgres`
+* `:\Program Files\PostgreSQL\13\lib`
+* `:\Program Files\PostgreSQL\13\bin`
+* `run psql -U postgres`
 
 ## db viewer
 https://www.heidisql.com/download.php?download=installer
