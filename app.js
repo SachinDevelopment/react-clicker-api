@@ -3,6 +3,16 @@ var bodyParser = require('body-parser')
 const app = express();
 const port = 5000;
 const cors = require('cors');
+var firebase = require("firebase/firestore");
+const admin = require('firebase-admin');
+
+var serviceAccount = require("./keys.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://react-clicker-a6919.firebaseio.com"
+});
+const db = admin.firestore();
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -38,6 +48,14 @@ app.get("/api/colors", async (req, res) => {
       value: "#000"
     }
   ]);
+
+  const docRef = db.collection('mercenary').collection('test').doc('test');
+
+  await docRef.set({
+    name: 'test',
+    description: 'A beasty tree',
+    cost: 50
+  });
 });
 
 // post sample
