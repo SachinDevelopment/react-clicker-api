@@ -3,6 +3,9 @@
 ## install node
 https://nodejs.org/dist/v12.19.0/node-v12.19.0-x64.msi
 
+## install postgresql
+https://www.enterprisedb.com/postgresql-tutorial-resources-training?cid=437
+
 ## How to set up
 * `npm install`
 * `npm start`
