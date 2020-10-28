@@ -17,50 +17,26 @@ const db = admin.firestore();
 app.use(bodyParser.json());
 app.use(cors());
 // get sample
-app.get("/api/colors", async (req, res) => {
-  res.send([
-    {
-      color: "red",
-      value: "#f00"
-    },
-    {
-      color: "green",
-      value: "#0f0"
-    },
-    {
-      color: "blue",
-      value: "#00f"
-    },
-    {
-      color: "cyan",
-      value: "#0ff"
-    },
-    {
-      color: "magenta",
-      value: "#f0f"
-    },
-    {
-      color: "yellow",
-      value: "#ff0"
-    },
-    {
-      color: "black",
-      value: "#000"
-    }
-  ]);
-
-  const docRef = db.collection('mercenary').collection('test').doc('test');
-
-  await docRef.set({
-    name: 'test',
-    description: 'A beasty tree',
-    cost: 50
+app.get("/api/mercenary", async (req, res) => {
+  const docRef = db.collection('mercenary');
+  const mercenaries = await docRef.get();
+  const mercResponse = [];
+  mercenaries.forEach((mercenary) => {
+    mercResponse.push(mercenary.data());
   });
+  res.status(200).send(mercResponse);
 });
 
 // post sample
-app.post("/parth", async (req, res) => {
-  console.log('printing out body', req.body);
+app.post("/api/mercenary", async (req, res) => {
+  const { name, description, cost } = req.body;
+  const docRef = db.collection('mercenary').doc(name);
+
+  await docRef.set({
+    name,
+    description,
+    cost,
+  });
   res.sendStatus(200);
 });
 
